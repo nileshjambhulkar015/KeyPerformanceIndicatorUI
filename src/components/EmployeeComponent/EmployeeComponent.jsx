@@ -6,35 +6,119 @@ class EmployeeComponent extends Component {
 
         this.state = {
             departments: [],
-            deptId: 1, //this.props.match.param.deptId,
-            deptName: '',
+            deptId: '', //this.props.match.param.deptId,
+            desigId: '',
+            roleId: '',
+            empFirstName: '',
+            empMiddleName: '',
+            empLastName: '',
+            empDob: '',
+            empPhoto: '',
+            empMobileNo: '',
+            empEmerMobileNo: '',
+
+            emailId: '',
+            tempAddress: '',
+            permAddress: '',
+            empGender: '',
+            empBloodgroup: '',
             remark: '',
-            statusCd: ''
+            statusCd: '',
+            employeeId: ''
         }
 
-        this.saveDepartment = this.saveDepartment.bind(this);
-        this.changeDeptNameHandler = this.changeDeptNameHandler.bind(this);
+        this.changeDeptIdHandler = this.changeDeptIdHandler.bind(this);
+        this.changeDesigIdHandler = this.changeDesigIdHandler.bind(this);
+        this.changeRoleIdHandler = this.changeRoleIdHandler.bind(this);
+        this.changeEmpFirstNameHandler = this.changeEmpFirstNameHandler.bind(this);
+        this.changeEmpMiddleNameHandler = this.changeEmpMiddleNameHandler.bind(this);
+        this.changeEmpLastNameHandler = this.changeEmpLastNameHandler.bind(this);
+        this.changeEmpDobHandler = this.changeEmpDobHandler.bind(this);
+        this.changeEmpPhotoHandler = this.changeEmpPhotoHandler.bind(this);
+        this.changeEmpMobileNoHandler = this.changeEmpMobileNoHandler.bind(this);
+        this.changeEmpEmerMobileNoHandler = this.changeEmpEmerMobileNoHandler.bind(this);
+
+        this.changeEmailIdHandler = this.changeEmailIdHandler.bind(this);
+        this.changeTempAddressHandler = this.changeTempAddressHandler.bind(this);
+        this.changePermAddressHandler = this.changePermAddressHandler.bind(this);
+        this.changeEmpGenderHandler = this.changeEmpGenderHandler.bind(this);
+        this.changeEmpBloodgroupHandler = this.changeEmpBloodgroupHandler.bind(this);
         this.changeRemarkHandler = this.changeRemarkHandler.bind(this);
-        this.saveDepartmen = this.saveDepartment.bind(this);
+
+
+
+        this.saveEmployeeDetails = this.saveEmployeeDetails.bind(this);
         this.updateDepartment = this.updateDepartment.bind(this);
         this.deleteDepartment = this.deleteDepartment.bind(this);
 
     }
 
+    changeDeptIdHandler = (event) => {
+        this.setState({ deptId: event.target.value });
+    }
+    changeDesigIdHandler = (event) => {
+        this.setState({ desigId: event.target.value });
+    }
+    changeRoleIdHandler = (event) => {
+        this.setState({ roleId: event.target.value });
+    }
+    changeEmpFirstNameHandler = (event) => {
+        this.setState({ empFirstName: event.target.value });
+    }
+    changeEmpMiddleNameHandler = (event) => {
+        this.setState({ empMiddleName: event.target.value });
+    }
+    changeEmpLastNameHandler = (event) => {
+        this.setState({ empLastName: event.target.value });
+    }
+    changeEmpDobHandler = (event) => {
+        this.setState({ empDob: event.target.value });
+    }
 
+    changeEmpPhotoHandler = (event) => {
+        this.setState({ empPhoto: event.target.value });
+    }
+    changeEmpMobileNoHandler = (event) => {
+        this.setState({ empMobileNo: event.target.value });
+    }
+
+    changeEmpEmerMobileNoHandler = (event) => {
+        this.setState({ empEmerMobileNo: event.target.value });
+    }
+    
+    changeEmailIdHandler = (event) => {
+        this.setState({ emailId: event.target.value });
+    }
+
+    changeTempAddressHandler = (event) => {
+        this.setState({ tempAddress: event.target.value });
+    }
+    changePermAddressHandler = (event) => {
+        this.setState({ permAddress: event.target.value });
+    }
+    changeEmpGenderHandler = (event) => {
+        this.setState({ empGender: event.target.value });
+    }
+    changeEmpBloodgroupHandler = (event) => {
+        this.setState({ empBloodgroup: event.target.value });
+    }
+
+    changeRemarkHandler = (event) => {
+        this.setState({ remark: event.target.value });
+    }
     componentDidMount() {
         EmployeeService.getDpartmentDetails().then((res) => {
             this.setState({ departments: res.data });
         });
 
-        EmployeeService.getDepartmentById(this.state.deptId).then((res) => {
-            let department = res.data;
-            console.log("data", department)
-            this.setState({
-                deptName: department.deptName,
-                remark: department.remark
-            });
-        });
+        /*  EmployeeService.getDepartmentById(this.state.deptId).then((res) => {
+              let department = res.data;
+              console.log("data", department)
+              this.setState({
+                  deptName: department.deptName,
+                  remark: department.remark
+              });
+          });*/
     }
 
     updateDepartment = (e) => {
@@ -58,26 +142,43 @@ class EmployeeComponent extends Component {
         // window.location.reload(); 
     }
 
-    saveDepartment = (e) => {
+    saveEmployeeDetails = (e) => {
         e.preventDefault()
-        let department = { deptName: this.state.deptName, remark: this.state.remark, statusCd: 'A' };
-        console.log('employee=>' + JSON.stringify(department));
-        EmployeeService.saveDpartmentDetails(department).then(res => {
-            console.log("Department added");
+        let employee = {
+            deptName: this.state.deptName,
+            deptId: this.state.deptId,
+            desigId: this.state.desigId,
+            // roleId: this.state.roleId, 
+            empFirstName: this.state.empFirstName,
+            empMiddleName: this.state.empMiddleName,
+            empLastName: this.state.empLastName,
+            empDob: this.state.empDob,
+            empPhoto: this.state.empPhoto,
+            empMobileNo: this.state.empMobileNo,
+            empEmerMobileNo: this.state.empEmerMobileNo,
+
+            emailId: this.state.emailId,
+            tempAddress: this.state.tempAddress,
+            permAddress: this.state.permAddress,
+            empGender: this.state.empGender,
+            empBloodgroup: this.state.empBloodgroup,
+            remark: this.state.remark,
+            statusCd: 'A',
+            employeeId: 'kpp-admin'
+        };
+
+
+        EmployeeService.saveEmployeeDetails(employee).then(res => {
+            console.log("Employee added");
         }
         );
         // window.location.reload(); 
     }
 
-    changeDeptNameHandler = (event) => {
-        this.setState({ deptName: event.target.value });
-    }
-    changeRemarkHandler = (event) => {
-        this.setState({ remark: event.target.value });
-    }
+
     render() {
         return (
-            
+
             <div className="row">
                 <h2 className="text-center">Employee List</h2>
                 <div className="col-md-2"></div>
@@ -135,129 +236,158 @@ class EmployeeComponent extends Component {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <button type="button" className="close" data-dismiss="modal">&times;</button>
-                                <h4 className="modal-title">Add Key Parameter</h4>
+                                <h4 className="modal-title">Add Employee</h4>
                             </div>
                             <div className="modal-body">
                                 <form className="form-horizontal" action="/action_page.php">
-                                <div className="form-group">
+                                    <div className="form-group">
                                         <div className="row">
                                             <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empFirstName">Employee Name:</label>
                                             <div className="col-sm-3">
-                                                <input type="text" className="form-control" id="empFirstName" placeholder="Enter First Name here" value={this.state.empFirstName} onChange={this.changeKppOverallTargetHandler} />
+                                                <input type="text" className="form-control" id="empFirstName" placeholder="Enter First Name here" value={this.state.empFirstName} onChange={this.changeEmpFirstNameHandler} />
                                             </div>
-                                            
+
                                             <div className="col-sm-3">
-                                                <input type="text" className="form-control" id="kppTargetPeriod" placeholder="Enter Middle Name here" value={this.state.kppOverallTarget} onChange={this.changeKppTargetPeriodHandler} />
+                                                <input type="text" className="form-control" id="empMiddleName" placeholder="Enter Middle Name here" value={this.state.empMiddleName} onChange={this.changeEmpMiddleNameHandler} />
                                             </div>
-                                            
+
                                             <div className="col-sm-3">
-                                                <input type="text" className="form-control" id="kppTargetPeriod" placeholder="Enter Last Name here" value={this.state.kppOverallTarget} onChange={this.changeKppTargetPeriodHandler} />
+                                                <input type="text" className="form-control" id="empLastName" placeholder="Enter Last Name here" value={this.state.empLastName} onChange={this.changeEmpLastNameHandler} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empDob">Date Of Birth:</label>
+                                            <div className="col-sm-3">
+                                            <input type="text" className="form-control" id="empDob" value={this.state.empDob} onChange={this.changeEmpDobHandler} />
+                                               
+                                            </div>
+
+                                            <label className="control-label col-sm-2" htmlFor="empPhoto">Upload Photo:</label>
+
+                                            <div className="col-sm-3">
+                                                <input type="text"  className="form-control" id="empPhoto" value={this.state.empPhoto} onChange={this.changeEmpPhotoHandler} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-3" htmlFor="deptId">Department Name:</label>
+                                            <div className="col-sm-3">
+
+                                                <select className="form-control" id="deptId" onChange={this.changeDeptIdHandler}>
+
+                                                    <option>--Select Department--</option>
+                                                    {
+                                                        this.state.departments.map(
+                                                            department =>
+                                                                <option key={department.deptId} value={department.deptId}>{department.deptName}</option>
+                                                        )
+                                                    };
+
+                                                </select>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-3" htmlFor="desigId"> Designation Name:</label>
+                                            <div className="col-sm-3">
+
+                                                <select className="form-control" id="desigId" onChange={this.changeDesigIdHandler}>
+                                                    <option>--Select Department--</option>
+                                                    {
+                                                        this.state.departments.map(
+                                                            department =>
+                                                                <option key={department.deptId} value={department.deptId}>{department.deptName}</option>
+                                                        )
+                                                    };
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empMobileNo">Mobile No 1:</label>
+                                            <div className="col-sm-3">
+                                                <input type="text" className="form-control" id="empMobileNo" placeholder="Enter First Name here" value={this.state.empMobileNo} onChange={this.changeEmpMobileNoHandler} />
+                                            </div>
+
+                                            <label className="control-label col-sm-2" htmlFor="empEmerMobileNo">Mobile No 2:</label>
+
+                                            <div className="col-sm-3">
+                                                <input type="text" className="form-control" id="empEmerMobileNo" placeholder="Enter Last Name here" value={this.state.empEmerMobileNo} onChange={this.changeEmpEmerMobileNoHandler} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="tempAddress">Temporary Address:</label>
+                                            <div className="col-sm-3">
+                                                <textarea row="6" className="form-control" id="tempAddress" placeholder="Enter First Name here" value={this.state.tempAddress} onChange={this.changeTempAddressHandler} />
+                                            </div>
+
+                                            <label className="control-label col-sm-2" htmlFor="permAddress">Permenent Address:</label>
+
+                                            <div className="col-sm-3">
+                                                <textarea row="6" className="form-control" id="permAddress" placeholder="Enter Last Name here" value={this.state.permAddress} onChange={this.changePermAddressHandler} />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                    <div className="row">
-                                        <label className="control-label col-sm-3" htmlFor="deptId">Department Name:</label>
-                                        <div className="col-sm-3">
-                                            <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="emailId"> Email Id:</label>
+                                            <div className="col-sm-4">
+
+                                                <input type="text" className="form-control" id="emailId" placeholder="Enter Email Id here" value={this.state.emailId} onChange={this.changeEmailIdHandler} />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empGender">Gender:</label>
+                                            <div className="col-sm-3">
+                                                <select className="form-control" id="empGender" onChange={this.changeEmpGenderHandler}>
+                                                    <option value={'Male'}>Male</option>
+                                                    <option value={'Female'}>Female</option>
+                                                </select>
+                                            </div>
+
+                                            <label className="control-label col-sm-2" htmlFor="kppObjective" onChange={this.changeEmpBloodgroupHandler}>Blood Group:</label>
+
+                                            <div className="col-sm-3">
                                                 <select className="form-control" id="sel1">
-                                                    <option>Human Rrsource</option>
-                                                    <option>Information Tech</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                    <div className="row">
-                                        <label className="control-label col-sm-3" htmlFor="desigId"> Designation Name:</label>
-                                        <div className="col-sm-3">
-                                            <div className="form-group">
-                                                <select className="form-control" id="sel1">
-                                                    <option>Software Engineer</option>
-                                                    <option>Head Of Department</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                    <div className="row">
-                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empFirstName">Mobile No 1:</label>
-                                            <div className="col-sm-3">
-                                                <input type="text" className="form-control" id="empFirstName" placeholder="Enter First Name here" value={this.state.empFirstName} onChange={this.changeKppOverallTargetHandler} />
-                                            </div>
-                                            
-                                            <label className="control-label col-sm-2" htmlFor="kppObjective">Mobile No 2:</label>
-                                            
-                                            <div className="col-sm-3">
-                                                <input type="text" className="form-control" id="kppTargetPeriod" placeholder="Enter Last Name here" value={this.state.kppOverallTarget} onChange={this.changeKppTargetPeriodHandler} />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                    <div className="row">
-                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empFirstName">Permenent Address:</label>
-                                            <div className="col-sm-3">
-                                                <textarea row="6" className="form-control" id="empFirstName" placeholder="Enter First Name here" value={this.state.empFirstName} onChange={this.changeKppOverallTargetHandler} />
-                                            </div>
-                                            
-                                            <label className="control-label col-sm-2" htmlFor="kppObjective">Temporary Address:</label>
-                                            
-                                            <div className="col-sm-3">
-                                                <textarea row="6" className="form-control" id="kppTargetPeriod" placeholder="Enter Last Name here" value={this.state.kppOverallTarget} onChange={this.changeKppTargetPeriodHandler} />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                    <div className="row">
-                                        <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="desigId"> Email Id:</label>
-                                        <div className="col-sm-4">
-                                            <div className="form-group">
-                                            <input type="text" className="form-control" id="kppTargetPeriod" placeholder="Enter Email Id here" value={this.state.kppOverallTarget} onChange={this.changeKppTargetPeriodHandler} />
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                    <div className="row">
-                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="empFirstName">Gender:</label>
-                                            <div className="col-sm-3">
-                                            <select className="form-control" id="sel1">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                            </div>
-                                            
-                                            <label className="control-label col-sm-2" htmlFor="kppObjective">Blood Group:</label>
-                                            
-                                            <div className="col-sm-3">
-                                            <select className="form-control" id="sel1">
-                                                    <option>A+ve</option>
-                                                    <option>B+ve</option>
+                                                    <option value={"A+"}>A+ve</option>
+                                                    <option value={"B+"}>B+ve</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="form-group">
-                                    <div className="row">
-                                        <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="reamrk">Enter Remark:</label>
-                                        <div className="col-sm-8">
-                                            <textarea row="4" className="form-control" id="remark" placeholder="Enter Remark here" value={this.state.remark} onChange={this.changeRemarkHandler} />
+                                        <div className="row">
+                                            <label className="control-label col-sm-2 col-sm-offset-1" htmlFor="reamrk">Enter Remark:</label>
+                                            <div className="col-sm-8">
+                                                <textarea row="4" className="form-control" id="remark" placeholder="Enter Remark here" value={this.state.remark} onChange={this.changeRemarkHandler} />
+                                            </div>
                                         </div>
                                     </div>
-</div>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-success" onClick={this.saveDepartment} data-dismiss="modal"> Submit</button>
+                                <button type="submit" className="btn btn-success" onClick={this.saveEmployeeDetails} data-dismiss="modal"> Submit</button>
                                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>

@@ -16,6 +16,8 @@ import KeyParameterComponent from './components/KeyParameterComponent/KeyParamet
 import LocationComponent from './components/LocationComponent/LocationComponent';
 import RegionComponent from './components/RegionComponent/RegionComponent';
 
+import EmployeeKPPComponent from './components/EmployeeKPPComponent/EmployeeKPPComponent';
+
 class App extends Component {
   render() {
     return (
@@ -35,6 +37,8 @@ class App extends Component {
 
                 <li><Link to="/location">Location</Link></li>
                 <li><Link to="/region">Region</Link></li>
+                <li><Link to="/employeekpp">Employee KPP</Link></li>
+                
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li><a href="#"><span className="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -49,6 +53,7 @@ class App extends Component {
             <Route path="/keyparemeter" component={KeyParameterComponent} />
             <Route path="/location" component={LocationComponent} />
             <Route path="/region" component={RegionComponent} />
+            <Route path="/employeekpp" component={EmployeeKPPComponent} />
           </Switch>
         </Router>
       </div>

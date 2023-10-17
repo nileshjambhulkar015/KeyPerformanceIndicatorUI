@@ -8,6 +8,7 @@ class DesignationComponent extends Component {
         this.state = {
             departments: [],
             designationResult: [],
+            
             deptId: '', //this.props.match.param.deptId,
             deptName:'',
             desigName: '',
@@ -37,9 +38,9 @@ class DesignationComponent extends Component {
             this.setState({ departments: res.data });
         });
 
-        DesignationService.getDesignationDetails().then((response) => {
+/*DesignationService.getDesignationDetails().then((response) => {
             this.setState({ designationResult: response.data });
-        });
+        });*/
 
         /* DesignationService.getDepartmentById(this.state.deptId).then((res) => {
              let department = res.data;

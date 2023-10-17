@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const BASE_URL="http://localhost:9091/department";
+const DEPARTMENT_URL="http://localhost:9091/department/employee";
+const KPP_URL_GET="http://localhost:9091/key-perform-parameter";
 
-const DEPARTMENT_GET_URL=BASE_URL+"";
+const BASE_URL="";
 
 class KeyParameterService{
 
     getDpartmentDetails(){
-        return axios.get(BASE_URL)
+        return axios.get(DEPARTMENT_URL)
     }
 
-    saveDpartmentDetails(department){
-        return axios.post(BASE_URL,department)
+    saveKPPDetails(keyPerformIndicator){
+        return axios.post(KPP_URL_GET,keyPerformIndicator)
     }
 
     getDepartmentById(deptId){

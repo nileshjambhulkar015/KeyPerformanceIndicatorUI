@@ -1,17 +1,19 @@
 import axios from "axios";
 
-const BASE_URL="http://localhost:9091/department";
+const DEPARTMENT_URL_GET="http://localhost:9091/department";
 
-const DEPARTMENT_GET_URL=BASE_URL+"";
+const EMPLOYEE_URL_POST="http://localhost:9091/employee";
+
+const BASE_URL="";
 
 class EmployeeService{
 
     getDpartmentDetails(){
-        return axios.get(BASE_URL)
+        return axios.get(DEPARTMENT_URL_GET)
     }
 
-    saveDpartmentDetails(department){
-        return axios.post(BASE_URL,department)
+    saveEmployeeDetails(employee){
+        return axios.post(EMPLOYEE_URL_POST,employee)
     }
 
     getDepartmentById(deptId){

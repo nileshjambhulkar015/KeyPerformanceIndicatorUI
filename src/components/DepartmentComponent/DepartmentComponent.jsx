@@ -1,12 +1,13 @@
 import React, {useState, useEffect, Component } from 'react';
 import DepartmentService from '../../services/DepartmentService';
+
 class DepartmentComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             departments: [],
-            deptId: 1, //this.props.match.param.deptId,
+            deptId: '', //this.props.match.param.deptId,
             deptName: '',
             remark: '',
             statusCd: ''

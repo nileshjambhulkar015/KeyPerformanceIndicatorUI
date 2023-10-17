@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {Row, Pagination,PaginationItem, PaginationLink} from 'reactstrap';
 const BASE_URL="http://localhost:9091/department";
 
 const DEPARTMENT_GET_URL=BASE_URL+"";
