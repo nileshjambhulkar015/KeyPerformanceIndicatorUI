@@ -121,7 +121,7 @@ class DepartmentComponent extends Component {
                                                     <td> <button type="submit" className="btn btn-info" data-toggle="modal" data-target="#myModal"
                                                         onClick={() => this.updateDepartment(department.deptId)}>Update</button>
                                                         <button type="submit" className="btn col-sm-offset-1 btn-info" onClick={() => this.deleteDepartment(department.deptId)}>Delete</button>
-                                                        <button type="submit" className="btn col-sm-offset-1 btn-danger" onClick={() => this.deleteDepartment(department.deptId)}>View</button></td>
+                                                        <button type="submit" className="btn col-sm-offset-1 btn-danger" data-toggle="modal" data-target="#showData" onClick={() => this.deleteDepartment(department.deptId)}>View</button></td>
 
                                                 </tr>
                                         )
@@ -164,6 +164,38 @@ class DepartmentComponent extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="submit" className="btn btn-success" onClick={this.saveDepartment} data-dismiss="modal"> Submit</button>
+                                <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+                <div className="modal fade" id="showData" role="dialog">
+                    <div className="modal-dialog">
+
+
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                <h4 className="modal-title">Department Details</h4>
+                            </div>
+                            <div className="modal-body">
+                                <form className="form-horizontal" action="/action_page.php">
+                                    <div className="form-group">
+                                        <label className="control-label col-sm-4" htmlFor="deptName">Department Name: data</label>
+                                        
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="control-label col-sm-4" htmlFor="reamrk">Remark: data</label>
+                                       
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                
                                 <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
