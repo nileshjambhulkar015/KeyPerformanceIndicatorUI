@@ -23,7 +23,15 @@ class DepartmentService{
 
         return axios.put(BASE_URL, department)
     }
+    getDpartmentDetailsByPaging(){
+        return axios.get("http://localhost:9091/department/search?searchEnum=ALL&statusCdEnum=A&page=0&size=20&sort=deptName")
+    }
 
+    getDpartmentDetailsByPagingByDate(e){
+        return axios.get(`http://localhost:9091/department/search?searchEnum=BY_NAME&searchString=${e}&statusCdEnum=A&page=0&size=20&sort=deptName`)
+    }
+   
 }
+
 
 export default new DepartmentService()
